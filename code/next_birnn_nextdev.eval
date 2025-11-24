@@ -1,0 +1,10 @@
+Cross-entropy: 1.8108 nats (= perplexity 6.116)
+Cross-entropy: 0.9780 nats (= perplexity 2.659)
+Cross-entropy: 0.0872 nats (= perplexity 1.091)
+Cross-entropy: 0.0238 nats (= perplexity 1.024)
+Total training time: 0:50:22
+---
+Wrote tagging to next_birnn_nextdev.output
+Cross-entropy: 0.0238 nats (= perplexity 1.024)
+Tagging accuracy: all: 100.000%, known: 100.000%, seen: nan%, novel: nan%
+===

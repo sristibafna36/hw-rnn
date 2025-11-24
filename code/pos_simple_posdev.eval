@@ -1,0 +1,8 @@
+Cross-entropy: 1.0421 nats (= perplexity 2.835)
+Cross-entropy: 1.7359 nats (= perplexity 5.674)
+Total training time: 0:03:58
+---
+Wrote tagging to pos_simple_posdev.output
+Cross-entropy: 1.7359 nats (= perplexity 5.674)
+Tagging accuracy: all: 80.357%, known: 80.357%, seen: nan%, novel: nan%
+===

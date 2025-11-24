@@ -1,2 +1,36 @@
 Cross-entropy: 3.0510 nats (= perplexity 21.137)
 Cross-entropy: 3.0510 nats (= perplexity 21.137)
+Cross-entropy: 0.6044 nats (= perplexity 1.830)
+Cross-entropy: 0.6044 nats (= perplexity 1.830)
+Cross-entropy: 0.4888 nats (= perplexity 1.630)
+Cross-entropy: 0.4888 nats (= perplexity 1.630)
+Cross-entropy: 0.4346 nats (= perplexity 1.544)
+Cross-entropy: 0.4346 nats (= perplexity 1.544)
+Cross-entropy: 0.3987 nats (= perplexity 1.490)
+Cross-entropy: 0.3987 nats (= perplexity 1.490)
+Cross-entropy: 0.3746 nats (= perplexity 1.454)
+Cross-entropy: 0.3746 nats (= perplexity 1.454)
+Cross-entropy: 0.3556 nats (= perplexity 1.427)
+Cross-entropy: 0.3556 nats (= perplexity 1.427)
+Cross-entropy: 0.3418 nats (= perplexity 1.407)
+Cross-entropy: 0.3418 nats (= perplexity 1.407)
+Cross-entropy: 0.3281 nats (= perplexity 1.388)
+Cross-entropy: 0.3281 nats (= perplexity 1.388)
+Cross-entropy: 0.3173 nats (= perplexity 1.373)
+Cross-entropy: 0.3173 nats (= perplexity 1.373)
+Cross-entropy: 0.3103 nats (= perplexity 1.364)
+Cross-entropy: 0.3103 nats (= perplexity 1.364)
+Cross-entropy: 0.3106 nats (= perplexity 1.364)
+Total training time: 2 days, 12:44:48
+---
+Wrote tagging to ensup_crf_endev.output
+Cross-entropy: 0.3106 nats (= perplexity 1.364)
+Tagging accuracy: all: 89.670%, known: 92.139%, seen: nan%, novel: 64.089%
+===
+Cross-entropy: 0.3106 nats (= perplexity 1.364)
+Total training time: 2 days, 9:34:26
+---
+Wrote tagging to ensup_crf_endev.output
+Cross-entropy: 0.3106 nats (= perplexity 1.364)
+Tagging accuracy: all: 89.670%, known: 92.139%, seen: nan%, novel: 64.089%
+===

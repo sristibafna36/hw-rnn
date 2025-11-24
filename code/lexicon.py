@@ -154,38 +154,37 @@ def problex_lexicon(corpus: TaggedCorpus) -> torch.Tensor:
     value log(p(w)).  These probabilities are add-one-smoothing
     estimates."""
     
-        k = len(corpus.tagset)  # number of tags
-        V = len(corpus.vocab)   # number of words
+    k = len(corpus.tagset)  # number of tags
+    V = len(corpus.vocab)   # number of words
+    # Count occurrences: word_counts[w] and tag_word_counts[t, w]
+    word_counts = torch.zeros(V)
+    tag_word_counts = torch.zeros(k, V)
         
-        # Count occurrences: word_counts[w] and tag_word_counts[t, w]
-        word_counts = torch.zeros(V)
-        tag_word_counts = torch.zeros(k, V)
+    for sentence in corpus:
+        for word, tag in sentence[1:-1]:  # exclude BOS, EOS
+            w = corpus.vocab.index(word)
+            if w is not None and w < V:
+                word_counts[w] += 1
+                if tag is not None:
+                    t = corpus.tagset.index(tag)
+                    if t is not None:
+                        tag_word_counts[t, w] += 1
         
-        for sentence in corpus:
-            for word, tag in sentence[1:-1]:  # exclude BOS, EOS
-                w = corpus.vocab.index(word)
-                if w is not None and w < V:
-                    word_counts[w] += 1
-                    if tag is not None:
-                        t = corpus.tagset.index(tag)
-                        if t is not None:
-                            tag_word_counts[t, w] += 1
+    # Compute p(w) with add-1 smoothing
+    total_words = word_counts.sum()
+    p_w = (word_counts + 1) / (total_words + V)
+    log_p_w = torch.log(p_w)
+       
+    # Compute p(t|w) = count(t,w) / count(w) with add-1 smoothing
+    # p(t|w) = (count(t,w) + 1) / (count(w) + k)
+    log_p_t_given_w = torch.zeros(V, k)
+    for w in range(V):
+        for t in range(k):
+            p_t_given_w = (tag_word_counts[t, w] + 1) / (word_counts[w] + k)
+            log_p_t_given_w[w, t] = torch.log(p_t_given_w)
         
-        # Compute p(w) with add-1 smoothing
-        total_words = word_counts.sum()
-        p_w = (word_counts + 1) / (total_words + V)
-        log_p_w = torch.log(p_w)
-        
-        # Compute p(t|w) = count(t,w) / count(w) with add-1 smoothing
-        # p(t|w) = (count(t,w) + 1) / (count(w) + k)
-        log_p_t_given_w = torch.zeros(V, k)
-        for w in range(V):
-            for t in range(k):
-                p_t_given_w = (tag_word_counts[t, w] + 1) / (word_counts[w] + k)
-                log_p_t_given_w[w, t] = torch.log(p_t_given_w)
-        
-        # Concatenate: [log p(t1|w), log p(t2|w), ..., log p(tk|w), log p(w)]
-        return torch.cat([log_p_t_given_w, log_p_w.unsqueeze(1)], dim=1)
+    # Concatenate: [log p(t1|w), log p(t2|w), ..., log p(tk|w), log p(w)]
+    return torch.cat([log_p_t_given_w, log_p_w.unsqueeze(1)], dim=1)
 
 def affixes_lexicon(corpus: TaggedCorpus,
                     newvocab: Optional[Integerizer[Word]] = None) -> torch.Tensor:
