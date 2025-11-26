@@ -1,0 +1,8 @@
+Wrote tagging to ensup_crf_ensup.output
+Cross-entropy: 0.2642 nats (= perplexity 1.302)
+Tagging accuracy: all: 91.953%, known: 91.953%, seen: nan%, novel: nan%
+===
+Wrote tagging to ensup_crf_ensup.output
+Cross-entropy: 0.2642 nats (= perplexity 1.302)
+Tagging accuracy: all: 91.953%, known: 91.953%, seen: nan%, novel: nan%
+===

@@ -224,7 +224,7 @@ class ConditionalRandomFieldNeural(ConditionalRandomFieldBackprop):
         
         word_emb = self.E[w_idx]  # e
         
-        # Get context vectors (equation 48)
+        # Get context vectors
         prefix = self.H[position-1] if position >= 1 else torch.zeros(self.rnn_dim)
         suffix = self.H_prime[position] if position <= len(self.H_prime)-1 else torch.zeros(self.rnn_dim)
         
@@ -245,12 +245,12 @@ class ConditionalRandomFieldNeural(ConditionalRandomFieldBackprop):
                 suffix              # h'[i]
             ])
             
-            # Compute potential (equation 45)
+            # Compute potential
             features = torch.sigmoid(self.U_B @ context)
             # Only set potential for the actual word at this position
             B[t, w_idx] = torch.exp(self.theta_B * features)
         
-        # Set small values for other words (they won't be used)
+        # Set small values for other words
         B[:, :] = torch.where(B > 0, B, torch.tensor(1e-10))
         
         return B

@@ -94,8 +94,8 @@ def embeddings_lexicon(corpus: TaggedCorpus, file: Path,
         filerows, cols = [int(i) for i in next(f).split()]   # first line gives num of rows and cols
         words = list(vocab)                      # words that need embeddings
         embeddings: List[Optional[Tensor]] = [None] * len(vocab)   # their embeddings
-        seen: Set[int] = set()                   # the words we've found embeddings for
-        ool_vector = torch.zeros(cols)           # use this for other words if there is no OOL entry
+        seen: Set[int] = set()                   # the words that we ound embeddings for
+        ool_vector = torch.zeros(cols)           
         specials = {'BOS': BOS_WORD, 'EOS': EOS_WORD, 'OOV': OOV_WORD}
 
         # Run through the words in the lexicon.
@@ -184,7 +184,7 @@ def problex_lexicon(corpus: TaggedCorpus) -> torch.Tensor:
             log_p_t_given_w[w, t] = torch.log(p_t_given_w)
         
     # Concatenate: [log p(t1|w), log p(t2|w), ..., log p(tk|w), log p(w)]
-    return torch.cat([log_p_t_given_w, log_p_w.unsqueeze(1)], dim=1)
+        return torch.cat([log_p_t_given_w, log_p_w.unsqueeze(1)], dim=1)
 
 def affixes_lexicon(corpus: TaggedCorpus,
                     newvocab: Optional[Integerizer[Word]] = None) -> torch.Tensor:

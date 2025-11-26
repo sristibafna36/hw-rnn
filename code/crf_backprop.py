@@ -92,7 +92,7 @@ class ConditionalRandomFieldBackprop(ConditionalRandomField, nn.Module):
         # and you don't need to initialize them to -inf or anything else.)
 
         with torch.no_grad():
-            self.WA[:, self.bos_t] = -999  # can't transition TO BOS
+            self.WA[:, self.bos_t] = -999  
        
         self.updateAB()  # update A and B potential matrices from new params
 
